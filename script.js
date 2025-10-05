@@ -41,6 +41,8 @@ async function fetchData(city) {
 
     const weatherData = await weatherRes.json();
 
+    console.log(weatherData);
+
     loadingEl.style.display = "none";
 
     let weatherIcon = weatherData.current.condition.icon;
@@ -49,10 +51,25 @@ async function fetchData(city) {
     let wind = weatherData.current.wind_kph;
     let humidity = weatherData.current.humidity;
     let clouds = weatherData.current.cloud;
+    let isDay = weatherData.current.is_day > 0 ? true : false;
+
+    if (!isDay) {
+      document.documentElement.style.backgroundColor = "rgb(25, 45, 70)";
+      document.body.style.backgroundColor = "rgb(25, 45, 70)";
+      document.documentElement.style.color = "#FFFFFF";
+      document.body.style.color = "#FFFFFF";
+    } else {
+      document.documentElement.style.backgroundColor = "rgb(97, 139, 192)";
+      document.body.style.backgroundColor = "rgb(97, 139, 192)";
+      document.documentElement.style.color = "#000000";
+      document.body.style.color = "#000000";
+    }
+
+    let capitalizedCity = city.charAt(0).toUpperCase() + city.slice(1);
 
     weatherIconEl.src = weatherIcon;
     degreesEl.textContent = `${degrees} °C`;
-    conditionEl.textContent = condition;
+    conditionEl.textContent = `${condition} in ${capitalizedCity} right now`;
     windEl.textContent = `${wind} km/h wind`;
     humidityEl.textContent = `${humidity}% humidity`;
     cloudsEl.textContent = `${clouds}% cloud coverage`;
