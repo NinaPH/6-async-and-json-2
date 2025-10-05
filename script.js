@@ -11,6 +11,8 @@ let windEl = document.querySelector(".wind");
 let humidityEl = document.querySelector(".humidity");
 let cloudsEl = document.querySelector(".clouds");
 let dateEl = document.querySelector(".date");
+let loadingEl = document.querySelector(".loading");
+let errorEl = document.querySelector(".error");
 
 let today = new Date();
 const options = {
@@ -19,11 +21,15 @@ const options = {
   day: "numeric",
 };
 
+loadingEl.style.display = "none";
+errorEl.style.display = "none";
+
 const formattedDate = today.toLocaleDateString("en-US", options);
 dateEl.textContent = formattedDate;
 
 button.addEventListener("click", () => {
   let city = cityInputEl.value;
+  loadingEl.style.display = "block";
   fetchData(city);
 });
 
@@ -34,6 +40,8 @@ async function fetchData(city) {
     );
 
     const weatherData = await weatherRes.json();
+
+    loadingEl.style.display = "none";
 
     let weatherIcon = weatherData.current.condition.icon;
     let degrees = weatherData.current.temp_c;
@@ -60,7 +68,9 @@ async function fetchData(city) {
 
     cityImageEl.src = imageData.photos[0].src.original;
   } catch (err) {
-    console.log(err);
+    loadingEl.style.display = "none";
+    errorEl.style.display = "block";
+    errorEl.innerHTML = `<b><i>An error occurred!</b><br>${err}</i>`;
   }
 }
 
