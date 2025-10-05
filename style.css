@@ -1,3 +1,88 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Nunito", sans-serif;
+  background-color: rgb(97, 139, 192);
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 400px;
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    "header"
+    "search"
+    "results";
+  text-align: center;
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 25px;
+  border: none;
+  font-size: 1rem;
+}
+
+.city-search {
+  border-radius: 25px;
+  padding: 10px 14px;
+  border: none;
+  cursor: pointer;
+  background-color: #5f8bc0;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.results-container {
+  display: grid;
+  gap: 10px;
+}
+
 .city-image {
+  margin: 0 auto;
   width: 200px;
+}
+
+.weather-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.degrees {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.condition {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.date {
+  font-size: 1rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  font-weight: 100;
 }

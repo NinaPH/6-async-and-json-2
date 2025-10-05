@@ -1,3 +1,5 @@
+// https://github.com/basmilius/weather-icons
+
 let cityInputEl = document.getElementById("city");
 let button = document.querySelector(".city-search");
 
@@ -8,6 +10,17 @@ let conditionEl = document.querySelector(".condition");
 let windEl = document.querySelector(".wind");
 let humidityEl = document.querySelector(".humidity");
 let cloudsEl = document.querySelector(".clouds");
+let dateEl = document.querySelector(".date");
+
+let today = new Date();
+const options = {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+};
+
+const formattedDate = today.toLocaleDateString("en-US", options);
+dateEl.textContent = formattedDate;
 
 button.addEventListener("click", () => {
   let city = cityInputEl.value;
